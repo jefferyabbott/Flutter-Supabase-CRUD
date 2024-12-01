@@ -1,4 +1,4 @@
-import 'package:db_tutorial/note_database.dart';
+import 'package:db_tutorial/notes_database.dart';
 import 'package:flutter/material.dart';
 
 import 'note.dart';
@@ -12,7 +12,7 @@ class NotesPage extends StatefulWidget {
 
 class _NotesPageState extends State<NotesPage> {
   // notes db
-  final noteDatabase = NoteDatabase();
+  final notesDatabase = NotesDatabase();
 
   // text controller
   final noteController = TextEditingController();
@@ -40,7 +40,7 @@ class _NotesPageState extends State<NotesPage> {
           TextButton(
             onPressed: () {
               final newNote = Note(content: noteController.text);
-              noteDatabase.createNote(newNote);
+              notesDatabase.createNote(newNote);
 
               Navigator.pop(context);
               noteController.clear();
@@ -75,7 +75,7 @@ class _NotesPageState extends State<NotesPage> {
           // save button
           TextButton(
             onPressed: () {
-              noteDatabase.updateNote(note, noteController.text);
+              notesDatabase.updateNote(note, noteController.text);
 
               Navigator.pop(context);
               noteController.clear();
@@ -106,7 +106,7 @@ class _NotesPageState extends State<NotesPage> {
           // save button
           TextButton(
             onPressed: () {
-              noteDatabase.deleteNote(note);
+              notesDatabase.deleteNote(note);
 
               Navigator.pop(context);
               noteController.clear();
@@ -129,7 +129,7 @@ class _NotesPageState extends State<NotesPage> {
         child: const Icon(Icons.add),
       ),
       body: StreamBuilder(
-        stream: noteDatabase.stream,
+        stream: notesDatabase.stream,
         builder: (context, snapshot) {
           // loading
           if (!snapshot.hasData) {

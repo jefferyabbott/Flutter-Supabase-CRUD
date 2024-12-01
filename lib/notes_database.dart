@@ -2,7 +2,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'note.dart';
 
-class NoteDatabase {
+class NotesDatabase {
   final database = Supabase.instance.client.from('notes');
 
   // create
